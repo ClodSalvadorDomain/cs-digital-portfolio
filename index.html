@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CS Digital | AI &amp; Automation Services</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #05050f;
+  --bg2: #0a0a1a;
+  --card: rgba(255,255,255,0.03);
+  --card-hover: rgba(255,255,255,0.06);
+  --cyan: #00f5ff;
+  --purple: #7b2fff;
+  --gold: #f0c040;
+  --text: #e8eaf6;
+  --muted: #6b7280;
+  --border: rgba(0,245,255,0.1);
+  --nav-bg: rgba(5,5,15,0.85);
+  --nav-scroll: rgba(5,5,15,0.97);
+  --grid-line: rgba(0,245,255,0.025);
+  --shadow: rgba(0,0,0,0.85);
+}
+body.light {
+  --bg: #f2f4ff;
+  --bg2: #e8ecfa;
+  --card: rgba(255,255,255,0.75);
+  --card-hover: rgba(255,255,255,0.95);
+  --cyan: #0077cc;
+  --purple: #6a1fd6;
+  --gold: #b07800;
+  --text: #0c0c1e;
+  --muted: #4a5568;
+  --border: rgba(0,100,200,0.14);
+  --nav-bg: rgba(242,244,255,0.9);
+  --nav-scroll: rgba(242,244,255,0.98);
+  --grid-line: rgba(0,80,200,0.04);
+  --shadow: rgba(0,0,40,0.12);
+}
+body.light .bg-grid{background-image:linear-gradient(var(--grid-line) 1px,transparent 1px),linear-gradient(90deg,var(--grid-line) 1px,transparent 1px);}
+body.light .card{box-shadow:0 4px 24px rgba(0,0,40,0.08);}
+body.light .card:hover{box-shadow:0 16px 50px rgba(0,80,200,0.12);}
+body.light nav{background:var(--nav-bg);}
+body.light .chat-widget{background:#fff;border-color:rgba(0,100,200,0.18);}
+body.light .chat-head{background:linear-gradient(135deg,rgba(0,120,220,.06),rgba(100,30,210,.06));}
+body.light .msg-b{background:rgba(0,0,0,.04);border-color:rgba(0,0,0,.06);}
+body.light .chat-inp{background:rgba(0,0,0,.04);border-color:rgba(0,100,200,.16);color:var(--text);}
+body.light .typing-ind{background:rgba(0,0,0,.04);border-color:rgba(0,0,0,.06);}
+body.light .tool{background:rgba(0,0,0,.04);border-color:rgba(0,0,0,.08);}
+body.light .svc-card{background:rgba(255,255,255,.8);box-shadow:0 4px 20px rgba(0,0,40,.07);}
+body.light .tabs{background:rgba(0,0,0,.04);}
+body.light .tab{color:var(--muted);}
+body.light .logo{background:linear-gradient(135deg,var(--cyan),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+body.light .hero-badge{border-color:rgba(0,100,200,.25);color:var(--cyan);}
+body.light .badge-dot{background:var(--cyan);}
+body.light .cta-sec{background:linear-gradient(135deg,rgba(0,100,200,.03),rgba(100,30,210,.03));}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Space Grotesk',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;}
+
+/* Grid bg */
+.bg-grid{position:fixed;inset:0;background-image:linear-gradient(var(--grid-line) 1px,transparent 1px),linear-gradient(90deg,var(--grid-line) 1px,transparent 1px);background-size:60px 60px;pointer-events:none;z-index:0;}
+
+/* Nav */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:18px 60px;display:flex;justify-content:space-between;align-items:center;backdrop-filter:blur(20px);background:var(--nav-bg);border-bottom:1px solid var(--border);}
+
+/* Theme toggle */
+.theme-toggle{width:36px;height:36px;border-radius:50%;border:1px solid var(--border);background:var(--card);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1rem;transition:border-color .3s,background .3s,transform .3s;flex-shrink:0;}
+.theme-toggle:hover{border-color:var(--cyan);transform:rotate(20deg);}
+.logo{font-family:'Orbitron',sans-serif;font-size:1.1rem;font-weight:900;background:linear-gradient(135deg,var(--cyan),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:2px;}
+.nav-links{display:flex;gap:36px;list-style:none;}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:0.8rem;letter-spacing:1.5px;text-transform:uppercase;transition:color .3s;}
+.nav-links a:hover{color:var(--cyan);}
+.nav-cta{padding:10px 22px;background:linear-gradient(135deg,var(--cyan),var(--purple));border:none;border-radius:4px;color:#050510;font-weight:800;font-size:0.75rem;letter-spacing:1px;text-transform:uppercase;cursor:pointer;text-decoration:none;transition:opacity .3s,transform .3s;}
+.nav-cta:hover{opacity:.85;transform:translateY(-1px);}
+
+/* Sections */
+section{position:relative;z-index:1;padding:100px 60px;}
+
+/* Hero */
+.hero{min-height:100vh;display:flex;align-items:center;padding:130px 60px 80px;}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;padding:7px 16px;border:1px solid rgba(0,245,255,.3);border-radius:100px;font-size:.7rem;letter-spacing:2px;text-transform:uppercase;color:var(--cyan);margin-bottom:28px;}
+.badge-dot{width:6px;height:6px;background:var(--cyan);border-radius:50%;animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.4;transform:scale(1.6);}}
+h1{font-family:'Orbitron',sans-serif;font-size:clamp(2.2rem,5vw,4.2rem);font-weight:900;line-height:1.1;margin-bottom:24px;}
+.grad{background:linear-gradient(135deg,var(--cyan),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.hero-desc{font-size:1.05rem;color:var(--muted);line-height:1.85;margin-bottom:44px;max-width:580px;}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap;}
+.btn-p{padding:15px 34px;background:linear-gradient(135deg,var(--cyan),var(--purple));border:none;border-radius:4px;color:#fff;font-weight:700;font-size:.85rem;letter-spacing:1px;text-transform:uppercase;cursor:pointer;text-decoration:none;display:inline-block;transition:transform .3s,box-shadow .3s;}
+.btn-p:hover{transform:translateY(-2px);box-shadow:0 12px 40px rgba(0,245,255,.3);}
+.btn-s{padding:15px 34px;background:transparent;border:1px solid rgba(0,245,255,.3);border-radius:4px;color:var(--cyan);font-weight:600;font-size:.85rem;letter-spacing:1px;text-transform:uppercase;cursor:pointer;text-decoration:none;display:inline-block;transition:background .3s,border-color .3s;}
+.btn-s:hover{background:rgba(0,245,255,.06);border-color:var(--cyan);}
+
+/* Section headings */
+.sec-label{font-size:.68rem;letter-spacing:4px;text-transform:uppercase;color:var(--cyan);margin-bottom:14px;display:flex;align-items:center;gap:12px;}
+.sec-label::before{content:'';display:block;width:36px;height:1px;background:var(--cyan);}
+h2{font-family:'Orbitron',sans-serif;font-size:clamp(1.7rem,3vw,2.6rem);font-weight:700;margin-bottom:14px;}
+.sec-desc{color:var(--muted);font-size:.95rem;line-height:1.85;max-width:580px;margin-bottom:56px;}
+
+/* Tabs */
+.tabs{display:flex;gap:4px;background:rgba(255,255,255,.03);padding:4px;border-radius:8px;border:1px solid var(--border);width:fit-content;margin-bottom:44px;}
+.tab{padding:11px 26px;border-radius:6px;border:none;background:transparent;color:var(--muted);font-size:.82rem;font-weight:600;cursor:pointer;transition:all .3s;font-family:'Space Grotesk',sans-serif;letter-spacing:.3px;}
+.tab.on{background:linear-gradient(135deg,var(--cyan),var(--purple));color:#fff;}
+.tab-c{display:none;}
+.tab-c.on{display:block;}
+
+/* Cards grid */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(360px,1fr));gap:22px;}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;transition:transform .3s,border-color .3s,box-shadow .3s;backdrop-filter:blur(10px);}
+.card:hover{transform:translateY(-4px);border-color:rgba(0,245,255,.3);box-shadow:0 20px 60px rgba(0,245,255,.07);}
+@keyframes borderGlow{0%,100%{border-color:rgba(0,245,255,.1);}50%{border-color:rgba(0,245,255,.45);}}
+.card-feat{animation:borderGlow 3s ease-in-out infinite;}
+.preview{position:relative;height:210px;overflow:hidden;}
+.p-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 45%,rgba(5,5,15,.92));}
+.c-tag{position:absolute;top:14px;right:14px;padding:4px 11px;border-radius:100px;font-size:.68rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;}
+.t-f{background:rgba(0,245,255,.12);color:var(--cyan);border:1px solid rgba(0,245,255,.25);}
+.t-w{background:rgba(123,47,255,.12);color:#a855f7;border:1px solid rgba(123,47,255,.25);}
+.t-a{background:rgba(240,192,64,.1);color:var(--gold);border:1px solid rgba(240,192,64,.2);}
+.cbody{padding:22px;}
+.c-client{font-size:.68rem;letter-spacing:2px;text-transform:uppercase;color:var(--cyan);margin-bottom:7px;}
+.c-title{font-size:1.1rem;font-weight:700;margin-bottom:9px;line-height:1.3;}
+.c-desc{font-size:.83rem;color:var(--muted);line-height:1.75;margin-bottom:18px;}
+.tools{display:flex;flex-wrap:wrap;gap:7px;}
+.tool{padding:3px 9px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:4px;font-size:.68rem;color:var(--muted);}
+
+/* Flow diagram inside cards */
+.flow{padding:16px 20px;background:linear-gradient(135deg,#080816,#0d0820);height:210px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;overflow:hidden;}
+.fn{display:flex;align-items:center;gap:7px;padding:7px 12px;border-radius:7px;font-size:.7rem;font-weight:600;width:195px;}
+.fn-t{background:rgba(255,165,0,.14);border:1px solid rgba(255,165,0,.3);color:#ffa500;}
+.fn-a{background:rgba(0,245,255,.07);border:1px solid rgba(0,245,255,.18);color:var(--cyan);}
+.fn-ai{background:rgba(240,192,64,.1);border:1px solid rgba(240,192,64,.22);color:var(--gold);}
+.fn-sp{background:rgba(123,47,255,.1);border:1px solid rgba(123,47,255,.28);color:#a855f7;}
+.fn-o{background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.22);color:#22c55e;}
+.fa{color:rgba(0,245,255,.28);font-size:.65rem;line-height:1;}
+.fbranch{display:flex;gap:10px;}
+.fbcol{display:flex;flex-direction:column;align-items:center;gap:4px;}
+.fn-sm{width:135px;font-size:.62rem;padding:5px 8px;}
+
+/* Lead preview table */
+.lead-preview{padding:18px;background:#080f1a;height:210px;overflow:hidden;}
+.lp-head{font-size:.58rem;letter-spacing:2px;color:var(--cyan);text-transform:uppercase;margin-bottom:10px;}
+.lrow{display:grid;grid-template-columns:48px 1fr 80px 38px;gap:5px;padding:5px 7px;border-radius:4px;font-size:.6rem;align-items:center;}
+.lrow-h{background:rgba(0,245,255,.04);border-bottom:1px solid rgba(255,255,255,.05);color:var(--muted);}
+.lrow-d{background:rgba(255,255,255,.02);}
+.lsrc{padding:1px 6px;border-radius:3px;background:rgba(0,245,255,.1);color:var(--cyan);font-size:.58rem;text-align:center;}
+
+/* Gibraltar mock */
+.gib-mock{padding:18px 20px;background:linear-gradient(135deg,#0f0f1e,#1b1030);height:210px;display:flex;align-items:center;justify-content:center;}
+.gib-inner{width:260px;}
+.gib-brand{font-size:.6rem;letter-spacing:3px;color:#c9a84c;text-transform:uppercase;border:1px solid rgba(201,168,76,.25);padding:3px 10px;border-radius:2px;text-align:center;margin-bottom:10px;}
+.gib-ttl{font-size:1rem;font-weight:700;text-align:center;color:#e8e0d0;margin-bottom:12px;}
+.gib-field{height:26px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);border-radius:4px;margin-bottom:7px;}
+.gib-row{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:7px;}
+.gib-btn{height:28px;background:#c9a84c;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:.62rem;font-weight:700;color:#000;letter-spacing:.8px;margin-top:4px;}
+
+/* TY page mock */
+.ty-mock{padding:18px 20px;background:linear-gradient(135deg,#071428,#0c1e38);height:210px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;}
+.ty-check{width:36px;height:36px;border-radius:50%;background:#c9a84c;display:flex;align-items:center;justify-content:center;font-size:16px;}
+.ty-badge{font-size:.52rem;letter-spacing:3px;color:#c9a84c;border:1px solid rgba(201,168,76,.3);padding:3px 9px;border-radius:2px;}
+.ty-ttl{font-size:.88rem;font-weight:800;text-align:center;color:#fff;line-height:1.3;}
+.ty-steps{display:flex;gap:7px;margin-top:4px;}
+.ty-step{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:5px;padding:8px 6px;text-align:center;width:64px;}
+.ty-step-ico{font-size:14px;margin-bottom:3px;}
+.ty-step-lbl{font-size:.52rem;color:#ccc;font-weight:600;}
+
+/* LM mock */
+.lm-mock{padding:18px 20px;background:linear-gradient(135deg,#0d1a2e,#1a2240);height:210px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;}
+.lm-tag{font-size:.52rem;letter-spacing:2.5px;color:var(--gold);text-transform:uppercase;}
+.lm-ttl{font-size:.95rem;font-weight:800;color:#fff;text-align:center;line-height:1.3;}
+.lm-sub{font-size:.62rem;color:#8899aa;text-align:center;max-width:190px;}
+.lm-fields{width:210px;margin-top:4px;}
+.lm-field{height:22px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);border-radius:4px;margin-bottom:5px;}
+.lm-btn{height:26px;background:#0f2d4d;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:.6rem;font-weight:700;color:#fff;letter-spacing:.5px;}
+
+/* Services */
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+.svc-card{padding:34px;background:var(--card);border:1px solid var(--border);border-radius:12px;backdrop-filter:blur(10px);transition:border-color .3s,transform .3s;}
+.svc-card:hover{border-color:rgba(0,245,255,.3);transform:translateY(-4px);}
+.svc-ico{font-size:1.9rem;margin-bottom:18px;display:block;}
+.svc-ttl{font-size:1.05rem;font-weight:700;margin-bottom:11px;}
+.svc-desc{font-size:.82rem;color:var(--muted);line-height:1.75;}
+
+/* CTA */
+.cta-sec{text-align:center;background:linear-gradient(135deg,rgba(0,245,255,.02),rgba(123,47,255,.02));border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+
+/* Footer */
+footer{position:relative;z-index:1;padding:36px 60px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--border);color:var(--muted);font-size:.78rem;flex-wrap:wrap;gap:12px;}
+
+/* Chat bubble */
+.chat-btn{position:fixed;bottom:30px;right:30px;width:58px;height:58px;border-radius:50%;background:linear-gradient(135deg,var(--cyan),var(--purple));border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.4rem;z-index:9999;box-shadow:0 8px 30px rgba(0,245,255,.4);transition:transform .3s,box-shadow .3s;}
+.chat-btn:hover{transform:scale(1.1);box-shadow:0 12px 45px rgba(0,245,255,.6);}
+.chat-pulse{position:absolute;top:-2px;right:-2px;width:14px;height:14px;background:#22c55e;border-radius:50%;border:2px solid var(--bg);animation:pulse 2s infinite;}
+
+/* Chat widget */
+.chat-widget{position:fixed;bottom:106px;right:30px;width:370px;max-height:550px;background:#08081e;border:1px solid rgba(0,245,255,.18);border-radius:16px;box-shadow:0 30px 80px rgba(0,0,0,.85),0 0 60px rgba(0,245,255,.04);z-index:9998;display:flex;flex-direction:column;overflow:hidden;transition:all .3s ease;transform-origin:bottom right;}
+.chat-widget.off{opacity:0;transform:scale(.82) translateY(20px);pointer-events:none;}
+.chat-head{padding:18px 22px;background:linear-gradient(135deg,rgba(0,245,255,.08),rgba(123,47,255,.08));border-bottom:1px solid rgba(0,245,255,.1);display:flex;align-items:center;gap:11px;}
+.chat-av{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--cyan),var(--purple));display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;}
+.chat-head-name{font-size:.9rem;font-weight:700;}
+.chat-online{font-size:.68rem;color:#22c55e;display:flex;align-items:center;gap:4px;}
+.chat-online::before{content:'';width:5px;height:5px;background:#22c55e;border-radius:50%;}
+.chat-msgs{flex:1;overflow-y:auto;padding:18px;display:flex;flex-direction:column;gap:10px;max-height:320px;}
+.chat-msgs::-webkit-scrollbar{width:3px;}
+.chat-msgs::-webkit-scrollbar-thumb{background:rgba(0,245,255,.18);border-radius:2px;}
+.msg{max-width:85%;padding:11px 14px;border-radius:11px;font-size:.82rem;line-height:1.65;animation:msgIn .28s ease;}
+@keyframes msgIn{from{opacity:0;transform:translateY(7px);}to{opacity:1;transform:translateY(0);}}
+.msg-b{background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.07);align-self:flex-start;border-radius:4px 11px 11px 11px;}
+.msg-u{background:linear-gradient(135deg,rgba(0,245,255,.18),rgba(123,47,255,.18));border:1px solid rgba(0,245,255,.18);align-self:flex-end;border-radius:11px 4px 11px 11px;color:#e0f7fa;}
+.qr-wrap{display:flex;gap:7px;flex-wrap:wrap;padding:0 18px 10px;}
+.qr{padding:7px 13px;border:1px solid rgba(0,245,255,.28);border-radius:100px;background:transparent;color:var(--cyan);font-size:.72rem;cursor:pointer;transition:all .2s;font-family:'Space Grotesk',sans-serif;}
+.qr:hover{background:rgba(0,245,255,.09);}
+.chat-inp-row{padding:14px 18px;border-top:1px solid rgba(0,245,255,.08);display:flex;gap:9px;}
+.chat-inp{flex:1;background:rgba(255,255,255,.04);border:1px solid rgba(0,245,255,.13);border-radius:7px;padding:9px 13px;color:var(--text);font-size:.82rem;font-family:'Space Grotesk',sans-serif;outline:none;transition:border-color .3s;}
+.chat-inp:focus{border-color:rgba(0,245,255,.38);}
+.chat-inp::placeholder{color:var(--muted);}
+.chat-send-btn{width:38px;height:38px;background:linear-gradient(135deg,var(--cyan),var(--purple));border:none;border-radius:7px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:opacity .2s;font-size:.95rem;}
+.chat-send-btn:hover{opacity:.84;}
+.typing-ind{display:flex;gap:4px;padding:11px 14px;background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.07);border-radius:4px 11px 11px 11px;width:fit-content;align-self:flex-start;}
+.typing-ind span{width:6px;height:6px;background:var(--muted);border-radius:50%;animation:ty 1.2s infinite;}
+.typing-ind span:nth-child(2){animation-delay:.18s;}
+.typing-ind span:nth-child(3){animation-delay:.36s;}
+@keyframes ty{0%,60%,100%{opacity:.3;transform:translateY(0);}30%{opacity:1;transform:translateY(-4px);}}
+
+/* Responsive */
+@media(max-width:900px){
+  nav{padding:14px 22px;}
+  .nav-links{display:none;}
+  section{padding:70px 22px;}
+  .hero{padding:100px 22px 60px;}
+  .svc-grid{grid-template-columns:1fr;}
+  footer{padding:28px 22px;flex-direction:column;text-align:center;}
+  .chat-widget{width:calc(100vw - 28px);right:14px;}
+}
+
+/* Fade-in animation on scroll */
+.fade-up{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease;}
+.fade-up.visible{opacity:1;transform:translateY(0);}
+</style>
+</head>
+<body>
+<div class="bg-grid"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">CS.DIGITAL</div>
+  <ul class="nav-links">
+    <li><a href="#portfolio">Portfolio</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div style="display:flex;align-items:center;gap:12px;">
+    <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="Toggle light/dark mode">🌙</button>
+    <a href="#contact" class="nav-cta" onclick="openChat();return false;">Book a Call</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div>
+    <div class="hero-badge"><span class="badge-dot"></span>AI &amp; Automation Specialist — Available Now</div>
+    <h1>Stop Doing Manually<br>What AI Can <span class="grad">Run For You</span><br>24/7</h1>
+    <p class="hero-desc">I design intelligent automation systems and AI-powered workflows that eliminate repetitive tasks, capture more leads, and scale your operations — without hiring more people or working more hours.</p>
+    <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:36px;">
+      <div style="display:flex;align-items:center;gap:10px;font-size:.9rem;color:var(--muted);"><span style="color:var(--cyan);font-size:1rem;">✦</span> Custom AI agents that work while you sleep</div>
+      <div style="display:flex;align-items:center;gap:10px;font-size:.9rem;color:var(--muted);"><span style="color:var(--cyan);font-size:1rem;">✦</span> Automation workflows connecting 300+ platforms</div>
+      <div style="display:flex;align-items:center;gap:10px;font-size:.9rem;color:var(--muted);"><span style="color:var(--cyan);font-size:1rem;">✦</span> High-converting funnels that nurture leads on autopilot</div>
+    </div>
+    <div class="hero-btns">
+      <a href="#portfolio" class="btn-p">See Real Results</a>
+      <a href="#" class="btn-s" onclick="openChat();return false;">Get a Free Strategy Call</a>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section id="portfolio" style="border-top:1px solid var(--border);">
+  <div class="sec-label">Selected Work</div>
+  <h2>Portfolio <span class="grad">Showcase</span></h2>
+  <p class="sec-desc">Real projects built for real businesses — luxury real estate portals, lead magnet funnels, and fully automated multi-platform pipelines.</p>
+
+  <div class="tabs">
+    <button class="tab on" onclick="switchTab('f',this)">Funnels &amp; Websites</button>
+    <button class="tab" onclick="switchTab('w',this)">Workflow Automations</button>
+  </div>
+
+  <!-- FUNNELS TAB -->
+  <div id="tab-f" class="tab-c on">
+    <div class="grid">
+
+      <!-- Card 1: Gibraltar Builders -->
+      <div class="card card-feat fade-up">
+        <div class="preview">
+          <div class="gib-mock">
+            <div class="gib-inner">
+              <div class="gib-brand">Gibraltar Builders</div>
+              <div class="gib-ttl">Visitor Registration Portal</div>
+              <div class="gib-row"><div class="gib-field"></div><div class="gib-field"></div></div>
+              <div class="gib-field"></div>
+              <div class="gib-field"></div>
+              <div style="display:flex;gap:7px;margin-bottom:7px;">
+                <div style="flex:1;height:26px;background:rgba(201,168,76,.12);border:1px solid rgba(201,168,76,.25);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:.58rem;color:#c9a84c;">🏠 Buyer</div>
+                <div style="flex:1;height:26px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:.58rem;color:#aaa;">🤝 Realtor</div>
+              </div>
+              <div class="gib-btn">COMPLETE REGISTRATION</div>
+            </div>
+          </div>
+          <div class="p-overlay"></div>
+          <span class="c-tag t-f">Landing Page</span>
+        </div>
+        <div class="cbody">
+          <div class="c-client">Gibraltar Builders</div>
+          <div class="c-title">Luxury Model Home Sign-In Portal</div>
+          <p class="c-desc">Premium visitor registration system for a luxury home builder. Captures buyer and realtor leads at model home events with buyer/realtor segmentation, timeline tracking, and instant CRM integration.</p>
+          <div class="tools">
+            <span class="tool">Custom Design</span><span class="tool">Lead Capture</span><span class="tool">CRM Integration</span><span class="tool">Real Estate</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2: Lead Magnet Funnel -->
+      <div class="card fade-up">
+        <div class="preview">
+          <div class="lm-mock">
+            <div class="lm-tag">Free Download · No Cost, No Catch</div>
+            <div class="lm-ttl">Get Your Free<br><span style="color:var(--gold);">Home Buyer's</span><br>Roadmap</div>
+            <div class="lm-sub">Discover exactly how to go from renting to owning — even if you think you're not ready.</div>
+            <div class="lm-fields">
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-bottom:5px;">
+                <div class="lm-field"></div><div class="lm-field"></div>
+              </div>
+              <div class="lm-field"></div>
+              <div class="lm-field"></div>
+              <div class="lm-btn">SEND ME THE FREE GUIDE →</div>
+            </div>
+          </div>
+          <div class="p-overlay"></div>
+          <span class="c-tag t-f">Lead Magnet</span>
+        </div>
+        <div class="cbody">
+          <div class="c-client">Roman Homes &amp; Loans</div>
+          <div class="c-title">Home Buyer's Roadmap — Lead Magnet Funnel</div>
+          <p class="c-desc">Full opt-in landing page that delivers a free 10-step homebuying guide while capturing warm buyer leads. Integrated with an automated email nurture sequence that builds trust and books consultations.</p>
+          <div class="tools">
+            <span class="tool">Lead Magnet</span><span class="tool">Email Automation</span><span class="tool">Opt-In Funnel</span><span class="tool">Real Estate</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3: Thank You Page -->
+      <div class="card fade-up">
+        <div class="preview">
+          <div class="ty-mock">
+            <div class="ty-check">✓</div>
+            <div class="ty-badge">YOU'RE ALL SET!</div>
+            <div class="ty-ttl">Welcome to Your<br><span style="color:var(--gold);font-style:italic;">Homeownership Journey</span></div>
+            <div style="font-size:.6rem;color:#8899aa;text-align:center;max-width:200px;margin-top:2px;">Your free guide is on its way to your inbox.</div>
+            <div class="ty-steps">
+              <div class="ty-step"><div class="ty-step-ico">📩</div><div class="ty-step-lbl">Check Inbox</div></div>
+              <div class="ty-step"><div class="ty-step-ico">📞</div><div class="ty-step-lbl">Book Call</div></div>
+              <div class="ty-step"><div class="ty-step-ico">🏠</div><div class="ty-step-lbl">Start Hunt</div></div>
+            </div>
+            <div style="display:flex;gap:8px;margin-top:8px;">
+              <div style="padding:5px 12px;background:var(--gold);border-radius:4px;font-size:.6rem;font-weight:700;color:#000;">CALL NOW</div>
+              <div style="padding:5px 12px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:4px;font-size:.6rem;color:#ccc;">SEND EMAIL</div>
+            </div>
+          </div>
+          <div class="p-overlay"></div>
+          <span class="c-tag t-f">Thank You Page</span>
+        </div>
+        <div class="cbody">
+          <div class="c-client">Roman Homes &amp; Loans</div>
+          <div class="c-title">Homeownership Journey — Post-Opt-In Experience</div>
+          <p class="c-desc">High-converting thank-you page with a 3-step next-action path that turns brand-new subscribers into booked consultations. Drives direct calls and email contact immediately after opt-in.</p>
+          <div class="tools">
+            <span class="tool">Conversion Design</span><span class="tool">CTA Optimization</span><span class="tool">Call Booking</span><span class="tool">UX</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 4: Lead Follow-Up System -->
+      <div class="card fade-up">
+        <div class="preview">
+          <div class="lead-preview">
+            <div class="lp-head">Automated Lead Dashboard</div>
+            <div class="lrow lrow-h"><span>DATE</span><span>NAME</span><span>TIMELINE</span><span>SRC</span></div>
+            <div class="lrow lrow-d"><span style="color:var(--muted);">5/27</span><span>Michael Bocca</span><span style="color:var(--cyan);font-size:.58rem;">6-12 Mo</span><span class="lsrc">FB</span></div>
+            <div class="lrow lrow-d"><span style="color:var(--muted);">5/27</span><span>Dawn Demarzo</span><span style="color:var(--cyan);font-size:.58rem;">6-12 Mo</span><span class="lsrc">FB</span></div>
+            <div class="lrow lrow-d"><span style="color:var(--muted);">5/26</span><span>Elizabeth L.</span><span style="color:var(--muted);font-size:.58rem;">Checking</span><span class="lsrc">FB</span></div>
+            <div class="lrow lrow-d"><span style="color:var(--muted);">5/25</span><span>Martha F.</span><span style="color:#22c55e;font-size:.58rem;">Now-3 Mo</span><span class="lsrc">FB</span></div>
+            <div class="lrow lrow-d"><span style="color:var(--muted);">5/24</span><span>Robert</span><span style="color:#22c55e;font-size:.58rem;">Now-3 Mo</span><span style="padding:1px 6px;border-radius:3px;background:rgba(168,85,247,.12);color:#a855f7;font-size:.58rem;text-align:center;">IG</span></div>
+            <div class="lrow lrow-d"><span style="color:var(--muted);">5/23</span><span>Humberto T.</span><span style="color:var(--cyan);font-size:.58rem;">3-6 Mo</span><span class="lsrc">FB</span></div>
+          </div>
+          <div class="p-overlay"></div>
+          <span class="c-tag t-f">CRM System</span>
+        </div>
+        <div class="cbody">
+          <div class="c-client">Roman Homes &amp; Loans</div>
+          <div class="c-title">Automated Lead Follow-Up &amp; Tracking System</div>
+          <p class="c-desc">Centralized lead management system capturing FB and IG ad leads, auto-routing them by buying timeline (Now–3 Mo, 6–12 Mo, Just Checking), and triggering personalized follow-up sequences so zero leads are ever missed.</p>
+          <div class="tools">
+            <span class="tool">FB &amp; IG Ads</span><span class="tool">Lead Routing</span><span class="tool">Auto Follow-Up</span><span class="tool">Pipeline View</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- WORKFLOWS TAB -->
+  <div id="tab-w" class="tab-c">
+    <div class="grid">
+
+      <!-- Workflow 1: Social Media Pipeline -->
+      <div class="card card-feat fade-up">
+        <div class="preview">
+          <div class="flow">
+            <div class="fn fn-t">☁️ Google Drive — New File</div>
+            <div class="fa">↓</div>
+            <div class="fn fn-a">🔍 Filter by Zapier</div>
+            <div class="fa">↓</div>
+            <div class="fn fn-ai">🤖 AI — Video Transcription</div>
+            <div class="fa">↓</div>
+            <div class="fn fn-ai">✨ AI — Analyze &amp; Return Data</div>
+            <div class="fa">↓</div>
+            <div class="fn fn-sp">⬡ Loop → Split into Paths</div>
+            <div class="fa">↓</div>
+            <div class="fbranch">
+              <div class="fbcol"><div class="fn fn-o fn-sm">📘 Facebook Post</div></div>
+              <div class="fbcol"><div class="fn fn-o fn-sm">📸 Instagram Post</div></div>
+            </div>
+          </div>
+          <div class="p-overlay" style="background:linear-gradient(to bottom,transparent 55%,rgba(5,5,15,.95));"></div>
+          <span class="c-tag t-a">AI Powered</span>
+        </div>
+        <div class="cbody">
+          <div class="c-client">Social Media Automation</div>
+          <div class="c-title">AI Video-to-Social Content Pipeline</div>
+          <p class="c-desc">Drop a video into Google Drive → AI transcribes and analyzes it → auto-generates platform-optimized captions → publishes simultaneously to Facebook Pages and Instagram Business. Zero manual posting.</p>
+          <div class="tools">
+            <span class="tool">Zapier</span><span class="tool">AI by Zapier</span><span class="tool">Google Drive</span><span class="tool">Facebook</span><span class="tool">Instagram</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Workflow 2: Lead Scoring -->
+      <div class="card fade-up">
+        <div class="preview">
+          <div class="flow">
+            <div class="fn fn-t">🔗 Webhook — Catch Lead</div>
+            <div class="fa">↓</div>
+            <div class="fn fn-a">⚡ Formatter — Company URL</div>
+            <div class="fa">↓</div>
+            <div class="fn fn-a">🔍 Apollo — Lead Enrichment</div>
+            <div class="fa">↓</div>
+            <div class="fn fn-sp">⬡ Split: High vs Low Priority</div>
+            <div class="fa">↓</div>
+            <div class="fbranch">
+              <div class="fbcol">
+                <div style="font-size:.58rem;color:var(--cyan);margin-bottom:3px;">High</div>
+                <div class="fn fn-ai fn-sm">📊 Google Sheets</div>
+                <div class="fa" style="font-size:.6rem;">↓</div>
+                <div class="fn fn-ai fn-sm">💬 Slack Alert</div>
+                <div class="fa" style="font-size:.6rem;">↓</div>
+                <div class="fn fn-o fn-sm">✉️ AI Email Draft</div>
+              </div>
+              <div class="fbcol">
+                <div style="font-size:.58rem;color:#a855f7;margin-bottom:3px;">Low</div>
+                <div class="fn fn-o fn-sm">📧 Sales Notif.</div>
+              </div>
+            </div>
+          </div>
+          <div class="p-overlay" style="background:linear-gradient(to bottom,transparent 55%,rgba(5,5,15,.95));"></div>
+          <span class="c-tag t-w">Lead Scoring</span>
+        </div>
+        <div class="cbody">
+          <div class="c-client">Sales Automation</div>
+          <div class="c-title">Intelligent Lead Scoring &amp; Nurturing Pipeline</div>
+          <p class="c-desc">Incoming leads are enriched via Apollo, scored by priority, and routed automatically — high-priority leads go to Google Sheets, Slack alerts, and an AI-drafted personalized email; low-priority leads get a sales notification. No manual triage.</p>
+          <div class="tools">
+            <span class="tool">Zapier</span><span class="tool">Apollo.io</span><span class="tool">Google Sheets</span><span class="tool">Slack</span><span class="tool">Gmail</span><span class="tool">AI</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Workflow 3: Asana-Xero -->
+      <div class="card fade-up">
+        <div class="preview">
+          <div class="flow" style="padding:14px 12px;">
+            <div style="display:flex;align-items:center;gap:5px;margin-bottom:7px;flex-wrap:wrap;justify-content:center;">
+              <div class="fn fn-t" style="width:auto;padding:5px 8px;font-size:.62rem;">⏱ Asana<br><span style="opacity:.65;font-size:.55rem;">Watch Tasks</span></div>
+              <div class="fa" style="transform:rotate(-90deg);">↓</div>
+              <div class="fn fn-a" style="width:auto;padding:5px 8px;font-size:.62rem;">💹 Xero<br><span style="opacity:.65;font-size:.55rem;">API Call</span></div>
+              <div class="fa" style="transform:rotate(-90deg);">↓</div>
+              <div class="fn fn-sp" style="width:auto;padding:5px 8px;font-size:.62rem;">⬡ Router</div>
+            </div>
+            <div class="fbranch" style="gap:8px;">
+              <div class="fbcol">
+                <div style="font-size:.58rem;color:var(--cyan);margin-bottom:3px;">Path 1</div>
+                <div class="fn fn-a fn-sm" style="width:128px;">🔁 Iterator</div>
+                <div class="fa" style="font-size:.6rem;">↓</div>
+                <div class="fn fn-o fn-sm" style="width:128px;">📊 Sheets Add Row</div>
+              </div>
+              <div class="fbcol">
+                <div style="font-size:.58rem;color:#a855f7;margin-bottom:3px;">Path 2</div>
+                <div class="fn fn-sp fn-sm" style="width:128px;">😴 Sleep</div>
+                <div class="fa" style="font-size:.6rem;">↓</div>
+                <div class="fn fn-a fn-sm" style="width:128px;">📊 Sheets Get Range</div>
+                <div class="fa" style="font-size:.6rem;">↓</div>
+                <div class="fn fn-ai fn-sm" style="width:128px;">📝 Text Aggregator</div>
+                <div class="fa" style="font-size:.6rem;">↓</div>
+                <div class="fn fn-o fn-sm" style="width:128px;">📎 Asana Attachment</div>
+              </div>
+            </div>
+          </div>
+          <div class="p-overlay" style="background:linear-gradient(to bottom,transparent 50%,rgba(5,5,15,.95));"></div>
+          <span class="c-tag t-w">Finance + PM</span>
+        </div>
+        <div class="cbody">
+          <div class="c-client">Finance &amp; Project Management</div>
+          <div class="c-title">Asana–Xero Financial Task Sync System</div>
+          <p class="c-desc">When Asana tasks complete, Xero is queried via API, then routed: Path 1 iterates records into Google Sheets rows; Path 2 aggregates all data and uploads it back as an Asana task attachment — fully closing the loop.</p>
+          <div class="tools">
+            <span class="tool">Make.com</span><span class="tool">Asana</span><span class="tool">Xero</span><span class="tool">Google Sheets</span><span class="tool">API</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" style="background:linear-gradient(135deg,rgba(0,245,255,.02),rgba(123,47,255,.02));border-top:1px solid var(--border);">
+  <div class="sec-label">What I Do</div>
+  <h2>Services <span class="grad">Offered</span></h2>
+  <p class="sec-desc">End-to-end digital systems — from the first click to the closed deal.</p>
+  <div class="svc-grid">
+    <div class="svc-card fade-up"><span class="svc-ico">⚡</span><div class="svc-ttl">Funnel &amp; Website Design</div><p class="svc-desc">High-converting landing pages, lead magnet funnels, opt-in sequences, and registration portals built to turn traffic into paying clients.</p></div>
+    <div class="svc-card fade-up"><span class="svc-ico">🔄</span><div class="svc-ttl">Workflow Automation</div><p class="svc-desc">Zapier, Make.com, and n8n automations that connect your apps, eliminate manual tasks, and run your business processes on autopilot 24/7.</p></div>
+    <div class="svc-card fade-up"><span class="svc-ico">🤖</span><div class="svc-ttl">AI Integration</div><p class="svc-desc">AI-powered pipelines that transcribe video content, enrich leads, write personalized emails, and publish social posts — automatically.</p></div>
+    <div class="svc-card fade-up"><span class="svc-ico">📊</span><div class="svc-ttl">Lead Management Systems</div><p class="svc-desc">CRM setups, lead scoring pipelines, and nurture sequences that ensure every lead gets the right message at the right time — guaranteed follow-up.</p></div>
+    <div class="svc-card fade-up"><span class="svc-ico">📱</span><div class="svc-ttl">Social Media Automation</div><p class="svc-desc">Multi-platform pipelines that take your raw content and auto-publish optimized posts to Facebook, Instagram, LinkedIn, and TikTok simultaneously.</p></div>
+    <div class="svc-card fade-up"><span class="svc-ico">🏠</span><div class="svc-ttl">Real Estate Tech Systems</div><p class="svc-desc">Specialized systems for realtors and mortgage professionals — model home sign-in portals, buyer nurture sequences, and loan pipeline tracking.</p></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div style="max-width:780px;margin:0 auto;text-align:center;">
+    <div class="sec-label" style="justify-content:center;">About</div>
+    <h2>Clod <span class="grad">Salvador</span></h2>
+    <p style="color:var(--muted);font-size:1rem;line-height:1.9;margin-bottom:26px;">I'm Clod Salvador — the founder of CS Digital. I specialize in building AI-powered automation systems, high-converting funnels, and multi-platform workflow pipelines that help businesses run smarter and scale faster.</p>
+    <p style="color:var(--muted);font-size:1rem;line-height:1.9;margin-bottom:44px;">Whether you need a lead magnet funnel, a complex multi-app automation, or an AI-powered content pipeline — I build it end-to-end, so you never have to stitch it together yourself.</p>
+    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
+      <span class="tool" style="padding:7px 15px;font-size:.78rem;">AI &amp; Automation</span>
+      <span class="tool" style="padding:7px 15px;font-size:.78rem;">Funnel Design</span>
+      <span class="tool" style="padding:7px 15px;font-size:.78rem;">Zapier Expert</span>
+      <span class="tool" style="padding:7px 15px;font-size:.78rem;">Make.com Expert</span>
+      <span class="tool" style="padding:7px 15px;font-size:.78rem;">n8n Workflows</span>
+      <span class="tool" style="padding:7px 15px;font-size:.78rem;">AI Integrations</span>
+      <span class="tool" style="padding:7px 15px;font-size:.78rem;">CRM Systems</span>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-sec" id="contact">
+  <div class="sec-label" style="justify-content:center;">Let's Work Together</div>
+  <h2>Ready to <span class="grad">Automate</span> Your Business?</h2>
+  <p class="sec-desc" style="margin:0 auto 44px;text-align:center;">Book a free 30-minute strategy call. We'll map out exactly what systems you need and how to build them.</p>
+  <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
+    <a href="#" class="btn-p" onclick="openChat();return false;">Book a Strategy Call</a>
+    <a href="mailto:clodsalvador.automations@gmail.com" class="btn-s">Send an Email</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="logo">CS.DIGITAL</div>
+  <div>© 2026 CS Digital · Clod Salvador · All Rights Reserved</div>
+  <div>clodsalvador.automations@gmail.com</div>
+</footer>
+
+<!-- CHAT BUTTON -->
+<button class="chat-btn" onclick="toggleChat()" title="Book an Appointment">
+  <div class="chat-pulse"></div>
+  <span id="chat-ico">💬</span>
+</button>
+
+<!-- CHAT WIDGET -->
+<div class="chat-widget off" id="chatWidget">
+  <div class="chat-head">
+    <div class="chat-av">👩‍💼</div>
+    <div>
+      <div class="chat-head-name">Book with Clod</div>
+      <div class="chat-online">Online Now</div>
+    </div>
+  </div>
+  <div class="chat-msgs" id="chatMsgs"></div>
+  <div class="qr-wrap" id="qrWrap"></div>
+  <div class="chat-inp-row">
+    <input class="chat-inp" id="chatInp" placeholder="Type your message..." onkeydown="if(event.key==='Enter')send()">
+    <button class="chat-send-btn" onclick="send()">➤</button>
+  </div>
+</div>
+
+<script>
+// ── THEME TOGGLE ──────────────────────────────────────
+(function(){
+  const saved = localStorage.getItem('csTheme');
+  if (saved === 'light') { document.body.classList.add('light'); document.getElementById('themeToggle').textContent = '☀️'; }
+})();
+function toggleTheme() {
+  const isLight = document.body.classList.toggle('light');
+  document.getElementById('themeToggle').textContent = isLight ? '☀️' : '🌙';
+  localStorage.setItem('csTheme', isLight ? 'light' : 'dark');
+}
+
+// ── TAB SWITCHING ──────────────────────────────────────
+function switchTab(id, btn) {
+  document.querySelectorAll('.tab').forEach(b => b.classList.remove('on'));
+  document.querySelectorAll('.tab-c').forEach(c => c.classList.remove('on'));
+  btn.classList.add('on');
+  document.getElementById('tab-' + id).classList.add('on');
+  // re-trigger fade-ups for newly visible cards
+  document.querySelectorAll('#tab-' + id + ' .fade-up').forEach(el => {
+    el.classList.remove('visible');
+    setTimeout(() => el.classList.add('visible'), 80);
+  });
+}
+
+// ── SCROLL FADE-IN ─────────────────────────────────────
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+
+// nav shadow on scroll
+window.addEventListener('scroll', () => {
+  const nav = document.querySelector('nav');
+  const light = document.body.classList.contains('light');
+  nav.style.background = window.scrollY > 40
+    ? (light ? 'rgba(242,244,255,.98)' : 'rgba(5,5,15,.97)')
+    : (light ? 'rgba(242,244,255,.90)' : 'rgba(5,5,15,.85)');
+});
+
+// ── CHAT WIDGET ────────────────────────────────────────
+let open = false, step = 0, data = {};
+
+function toggleChat() {
+  open = !open;
+  document.getElementById('chatWidget').classList.toggle('off', !open);
+  document.getElementById('chat-ico').textContent = open ? '✕' : '💬';
+  if (open && step === 0) setTimeout(startChat, 320);
+}
+function openChat() { if (!open) toggleChat(); }
+
+function bot(html, delay) {
+  delay = delay || 0;
+  const msgs = document.getElementById('chatMsgs');
+  const ty = document.createElement('div');
+  ty.className = 'typing-ind';
+  ty.innerHTML = '<span></span><span></span><span></span>';
+  msgs.appendChild(ty);
+  msgs.scrollTop = msgs.scrollHeight;
+  setTimeout(() => {
+    ty.remove();
+    const d = document.createElement('div');
+    d.className = 'msg msg-b';
+    d.innerHTML = html.replace(/\n/g,'<br>').replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>');
+    msgs.appendChild(d);
+    msgs.scrollTop = msgs.scrollHeight;
+  }, 820 + delay);
+}
+
+function user(txt) {
+  const msgs = document.getElementById('chatMsgs');
+  const d = document.createElement('div');
+  d.className = 'msg msg-u';
+  d.textContent = txt;
+  msgs.appendChild(d);
+  msgs.scrollTop = msgs.scrollHeight;
+  document.getElementById('qrWrap').innerHTML = '';
+}
+
+function qr(items) {
+  const wrap = document.getElementById('qrWrap');
+  wrap.innerHTML = '';
+  items.forEach(t => {
+    const b = document.createElement('button');
+    b.className = 'qr';
+    b.textContent = t;
+    b.onclick = () => handle(t);
+    wrap.appendChild(b);
+  });
+}
+
+function startChat() {
+  step = 1;
+  bot("Hi there! 👋 I'm the CS Digital booking assistant.\n\nLet's get your **free strategy call** with Clod scheduled. Could I start with your **full name**?");
+}
+
+function send() {
+  const inp = document.getElementById('chatInp');
+  const v = inp.value.trim();
+  if (!v) return;
+  inp.value = '';
+  handle(v);
+}
+
+function handle(v) {
+  user(v);
+  switch (step) {
+    case 1:
+      data.name = v;
+      step = 2;
+      setTimeout(() => bot('Great, **' + v + '**! 🙌\n\nWhat\'s your **email address**?'), 200);
+      break;
+    case 2:
+      if (!v.includes('@')) { bot('Hmm, that doesn\'t look quite right. Could you check your email? 🙂'); return; }
+      data.email = v;
+      step = 3;
+      setTimeout(() => bot('Perfect! And your **phone number**? (So Clod can send a confirmation)'), 200);
+      break;
+    case 3:
+      data.phone = v;
+      step = 4;
+      setTimeout(() => {
+        bot('What **service** are you most interested in?');
+        setTimeout(() => qr(['Funnel / Website','Workflow Automation','AI Integration','Lead Management','Real Estate Tech','Not Sure Yet']), 900);
+      }, 200);
+      break;
+    case 4:
+      data.service = v;
+      step = 5;
+      setTimeout(() => {
+        bot('What **day of the week** works best for you?');
+        setTimeout(() => qr(['Monday','Tuesday','Wednesday','Thursday','Friday']), 900);
+      }, 200);
+      break;
+    case 5:
+      data.day = v;
+      step = 6;
+      setTimeout(() => {
+        bot('And what **time**? (Eastern Time)');
+        setTimeout(() => qr(['9:00 AM','10:00 AM','11:00 AM','1:00 PM','2:00 PM','3:00 PM','4:00 PM']), 900);
+      }, 200);
+      break;
+    case 6:
+      data.time = v;
+      step = 7;
+      setTimeout(() => {
+        bot('✅ Here\'s your booking summary:\n\n👤 **' + data.name + '**\n📧 ' + data.email + '\n📞 ' + data.phone + '\n🎯 ' + data.service + '\n📅 ' + data.day + ' at ' + data.time + ' ET');
+        setTimeout(() => {
+          bot('Does this look correct?');
+          setTimeout(() => qr(['✅ Yes, Book It!','✏️ Change Something']), 900);
+        }, 1300);
+      }, 200);
+      break;
+    case 7:
+      if (v.includes('Yes') || v.includes('Book')) {
+        step = 8;
+        confirmBooking();
+      } else {
+        step = 1; data = {};
+        setTimeout(() => bot('No problem! Let\'s start over. What\'s your **full name**?'), 200);
+      }
+      break;
+    case 8:
+      bot('Your appointment is already submitted! Clod will be in touch shortly. 🎉');
+      break;
+  }
+}
+
+function confirmBooking() {
+  var title = encodeURIComponent('Strategy Call — ' + data.name);
+  var details = encodeURIComponent(
+    'Name: ' + data.name + '\n' +
+    'Email: ' + data.email + '\n' +
+    'Phone: ' + data.phone + '\n' +
+    'Service: ' + data.service + '\n' +
+    'Preferred: ' + data.day + ' at ' + data.time + ' ET'
+  );
+  var calLink = 'https://calendar.google.com/calendar/render?action=TEMPLATE&text=' + title + '&details=' + details + '&sf=true&output=xml';
+
+  var subj = encodeURIComponent('📅 New Strategy Call Request — ' + data.name);
+  var body = encodeURIComponent(
+    'Hello Clod,\n\n' +
+    'You have a new strategy call request via CS Digital:\n\n' +
+    'Name: ' + data.name + '\n' +
+    'Email: ' + data.email + '\n' +
+    'Phone: ' + data.phone + '\n' +
+    'Service Interest: ' + data.service + '\n' +
+    'Preferred Day: ' + data.day + '\n' +
+    'Preferred Time: ' + data.time + ' ET\n\n' +
+    'Please reach out to confirm the appointment.\n\n— CS Digital Booking System'
+  );
+  var gmailLink = 'https://mail.google.com/mail/?view=cm&to=clodsalvador.automations%40gmail.com&su=' + subj + '&body=' + body;
+
+  setTimeout(() => {
+    bot('🎉 **Booking request submitted!**\n\nThank you, **' + data.name + '**! Clod will reach out to **' + data.email + '** within 24 hours to confirm your slot.\n\nUse the buttons below to send the notification and add it to your calendar:');
+    setTimeout(() => {
+      var msgs = document.getElementById('chatMsgs');
+      var d = document.createElement('div');
+      d.className = 'msg msg-b';
+      d.innerHTML =
+        '<div style="display:flex;flex-direction:column;gap:8px;">' +
+        '<a href="' + gmailLink + '" target="_blank" rel="noopener" style="display:block;padding:9px 14px;background:rgba(0,245,255,.1);border:1px solid rgba(0,245,255,.22);border-radius:7px;color:var(--cyan);text-decoration:none;font-size:.8rem;text-align:center;font-weight:600;">📧 Send Notification to Clod</a>' +
+        '<a href="' + calLink + '" target="_blank" rel="noopener" style="display:block;padding:9px 14px;background:rgba(123,47,255,.1);border:1px solid rgba(123,47,255,.22);border-radius:7px;color:#a855f7;text-decoration:none;font-size:.8rem;text-align:center;font-weight:600;">📅 Add to Google Calendar</a>' +
+        '</div>';
+      msgs.appendChild(d);
+      msgs.scrollTop = msgs.scrollHeight;
+    }, 1600);
+  }, 400);
+}
+</script>
+</body>
+</html>
