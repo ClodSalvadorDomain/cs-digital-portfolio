@@ -302,38 +302,12 @@ section::before{content:'';position:absolute;left:60px;top:0;width:36px;height:2
 @keyframes gradShift{0%,100%{background-position:0% 50%;}50%{background-position:100% 50%;}}
 .grad{background-size:200% 200%;animation:gradShift 4s ease infinite;}
 
-/* ── TEXT GLOW ANIMATIONS ── */
-@keyframes titlePulse{
-  0%,100%{text-shadow:0 0 40px rgba(0,245,255,.18),0 0 80px rgba(0,245,255,.08);}
-  50%    {text-shadow:0 0 55px rgba(0,245,255,.3),0 0 110px rgba(0,245,255,.13),0 0 160px rgba(123,47,255,.07);}
-}
-@keyframes h2Pulse{
-  0%,100%{text-shadow:0 0 30px rgba(0,245,255,.14),0 0 60px rgba(0,245,255,.06);}
-  50%    {text-shadow:0 0 45px rgba(0,245,255,.24),0 0 90px rgba(0,245,255,.1);}
-}
-@keyframes labelPulse{
-  0%,100%{text-shadow:0 0 14px rgba(0,245,255,.55);opacity:.9;}
-  50%    {text-shadow:0 0 22px rgba(0,245,255,.95),0 0 44px rgba(0,245,255,.4);opacity:1;}
-}
-@keyframes badgeBreath{
-  0%,100%{box-shadow:0 0 20px rgba(0,245,255,.06),inset 0 0 20px rgba(0,245,255,.03);}
-  50%    {box-shadow:0 0 32px rgba(0,245,255,.16),0 0 64px rgba(0,245,255,.06),inset 0 0 28px rgba(0,245,255,.07);}
-}
-@keyframes statGlow{
-  0%,100%{filter:drop-shadow(0 0 10px rgba(0,245,255,.35));}
-  50%    {filter:drop-shadow(0 0 18px rgba(0,245,255,.65)) drop-shadow(0 0 36px rgba(123,47,255,.2));}
-}
-@keyframes logoGlow{
-  0%,100%{filter:brightness(1);}
-  50%    {filter:brightness(1.15) drop-shadow(0 0 8px rgba(0,245,255,.5));}
-}
-
-h1{animation:titlePulse 4.5s ease-in-out infinite;}
-h2{animation:h2Pulse 5.5s ease-in-out infinite;animation-delay:-2s;}
-.sec-label{animation:labelPulse 3.5s ease-in-out infinite;}
-.hero-badge{animation:badgeBreath 3.5s ease-in-out infinite;}
-.stat-num{animation:statGlow 3s ease-in-out infinite;}
-.logo{animation:logoGlow 4s ease-in-out infinite;}
+h1{text-shadow:0 0 40px rgba(0,245,255,.12),0 0 80px rgba(0,245,255,.05);}
+h2{text-shadow:0 0 30px rgba(0,245,255,.1),0 0 60px rgba(0,245,255,.04);}
+.sec-label{text-shadow:0 0 14px rgba(0,245,255,.45);}
+.hero-badge{box-shadow:0 0 20px rgba(0,245,255,.06),inset 0 0 20px rgba(0,245,255,.03);}
+.stat-num{filter:drop-shadow(0 0 10px rgba(0,245,255,.3));}
+.logo{filter:drop-shadow(0 0 6px rgba(0,245,255,.35));}
 
 /* ── BODY TEXT COOL TINT ── */
 .hero-desc{color:rgba(185,200,225,.72);}
