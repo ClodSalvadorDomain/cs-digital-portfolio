@@ -1329,5 +1329,65 @@ function confirmBooking() {
   }, 400);
 }
 </script>
+
+<!-- CURSOR GLOW + CLICK RIPPLE -->
+<div id="cursorGlow"></div>
+<style>
+#cursorGlow{
+  position:fixed;
+  top:0;left:0;
+  width:28px;height:28px;
+  border-radius:50%;
+  pointer-events:none;
+  z-index:9999;
+  transform:translate(-50%,-50%);
+  background:radial-gradient(circle,rgba(0,245,255,.55) 0%,rgba(0,245,255,.12) 45%,transparent 70%);
+  filter:blur(4px);
+  transition:opacity .25s;
+  mix-blend-mode:screen;
+}
+body.light #cursorGlow{
+  background:radial-gradient(circle,rgba(0,119,204,.45) 0%,rgba(0,119,204,.1) 45%,transparent 70%);
+}
+@keyframes rippleOut{
+  0%  {transform:translate(-50%,-50%) scale(0);opacity:.55;}
+  100%{transform:translate(-50%,-50%) scale(1);opacity:0;}
+}
+.cursor-ripple{
+  position:fixed;
+  width:60px;height:60px;
+  border-radius:50%;
+  pointer-events:none;
+  z-index:9998;
+  border:1px solid rgba(0,245,255,.6);
+  animation:rippleOut .55s ease-out forwards;
+}
+body.light .cursor-ripple{border-color:rgba(0,119,204,.5);}
+</style>
+<script>
+(function(){
+  const glow = document.getElementById('cursorGlow');
+  let mx = -100, my = -100, cx = -100, cy = -100;
+
+  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+
+  (function loop(){
+    cx += (mx - cx) * 0.14;
+    cy += (my - cy) * 0.14;
+    glow.style.left = cx + 'px';
+    glow.style.top  = cy + 'px';
+    requestAnimationFrame(loop);
+  })();
+
+  document.addEventListener('click', e => {
+    const r = document.createElement('div');
+    r.className = 'cursor-ripple';
+    r.style.left = e.clientX + 'px';
+    r.style.top  = e.clientY + 'px';
+    document.body.appendChild(r);
+    setTimeout(() => r.remove(), 600);
+  });
+})();
+</script>
 </body>
 </html>
