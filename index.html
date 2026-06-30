@@ -1330,53 +1330,63 @@ function confirmBooking() {
 }
 </script>
 
-<!-- CURSOR GLOW + CLICK RIPPLE -->
-<div id="cursorGlow"></div>
+<!-- CURSOR TRAIL + CLICK RIPPLE -->
+<canvas id="trailCanvas"></canvas>
 <style>
-#cursorGlow{
-  position:fixed;
-  top:0;left:0;
-  width:28px;height:28px;
-  border-radius:50%;
-  pointer-events:none;
-  z-index:9999;
-  transform:translate(-50%,-50%);
-  background:radial-gradient(circle,rgba(0,245,255,.55) 0%,rgba(0,245,255,.12) 45%,transparent 70%);
-  filter:blur(4px);
-  transition:opacity .25s;
-  mix-blend-mode:screen;
-}
-body.light #cursorGlow{
-  background:radial-gradient(circle,rgba(0,119,204,.45) 0%,rgba(0,119,204,.1) 45%,transparent 70%);
-}
+#trailCanvas{position:fixed;inset:0;pointer-events:none;z-index:9999;mix-blend-mode:screen;}
+body.light #trailCanvas{mix-blend-mode:multiply;}
 @keyframes rippleOut{
-  0%  {transform:translate(-50%,-50%) scale(0);opacity:.55;}
+  0%  {transform:translate(-50%,-50%) scale(0);opacity:.5;}
   100%{transform:translate(-50%,-50%) scale(1);opacity:0;}
 }
 .cursor-ripple{
-  position:fixed;
-  width:60px;height:60px;
-  border-radius:50%;
-  pointer-events:none;
-  z-index:9998;
-  border:1px solid rgba(0,245,255,.6);
-  animation:rippleOut .55s ease-out forwards;
+  position:fixed;width:56px;height:56px;border-radius:50%;
+  pointer-events:none;z-index:9998;
+  border:1px solid rgba(0,245,255,.55);
+  animation:rippleOut .5s ease-out forwards;
 }
-body.light .cursor-ripple{border-color:rgba(0,119,204,.5);}
+body.light .cursor-ripple{border-color:rgba(0,119,204,.45);}
 </style>
 <script>
 (function(){
-  const glow = document.getElementById('cursorGlow');
-  let mx = -100, my = -100, cx = -100, cy = -100;
+  const canvas = document.getElementById('trailCanvas');
+  const ctx = canvas.getContext('2d');
 
-  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+  function resize(){ canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+  resize();
+  window.addEventListener('resize', resize);
 
-  (function loop(){
-    cx += (mx - cx) * 0.14;
-    cy += (my - cy) * 0.14;
-    glow.style.left = cx + 'px';
-    glow.style.top  = cy + 'px';
-    requestAnimationFrame(loop);
+  const HISTORY = 32;
+  const trail = [];
+  let tx = -400, ty = -400, hx = -400, hy = -400;
+
+  document.addEventListener('mousemove', e => { tx = e.clientX; ty = e.clientY; });
+
+  function col(){ return document.body.classList.contains('light') ? '0,100,200' : '0,245,255'; }
+
+  (function tick(){
+    hx += (tx - hx) * 0.16;
+    hy += (ty - hy) * 0.16;
+    trail.push({x: hx, y: hy});
+    if(trail.length > HISTORY) trail.shift();
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    if(trail.length > 1){
+      const c = col();
+      for(let i = 1; i < trail.length; i++){
+        const t = i / (trail.length - 1);
+        ctx.beginPath();
+        ctx.moveTo(trail[i-1].x, trail[i-1].y);
+        ctx.lineTo(trail[i].x, trail[i].y);
+        ctx.strokeStyle = `rgba(${c},${t * t * 0.6})`;
+        ctx.lineWidth = t * 8;
+        ctx.lineCap = 'round';
+        ctx.lineJoin = 'round';
+        ctx.stroke();
+      }
+    }
+    requestAnimationFrame(tick);
   })();
 
   document.addEventListener('click', e => {
@@ -1385,7 +1395,7 @@ body.light .cursor-ripple{border-color:rgba(0,119,204,.5);}
     r.style.left = e.clientX + 'px';
     r.style.top  = e.clientY + 'px';
     document.body.appendChild(r);
-    setTimeout(() => r.remove(), 600);
+    setTimeout(() => r.remove(), 550);
   });
 })();
 </script>
