@@ -174,12 +174,12 @@ h2{font-family:'Orbitron',sans-serif;font-size:clamp(1.7rem,3vw,2.6rem);font-wei
 .lm-btn{height:26px;background:#0f2d4d;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:.6rem;font-weight:700;color:#fff;letter-spacing:.5px;}
 
 /* Services */
-.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
-.svc-card{padding:34px;background:var(--card);border:1px solid var(--border);border-radius:12px;backdrop-filter:blur(10px);transition:border-color .3s,transform .3s;}
-.svc-card:hover{border-color:rgba(0,245,255,.3);transform:translateY(-4px);}
-.svc-ico{font-size:1.9rem;margin-bottom:18px;display:block;}
-.svc-ttl{font-size:1.05rem;font-weight:700;margin-bottom:11px;}
-.svc-desc{font-size:.82rem;color:var(--muted);line-height:1.75;}
+.svc-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:12px;overflow:hidden;}
+.svc-card{padding:32px 36px;background:var(--bg);transition:background .25s;}
+.svc-card:hover{background:var(--card);}
+.svc-ttl{font-size:.95rem;font-weight:700;margin-bottom:9px;}
+.svc-desc{font-size:.8rem;color:var(--muted);line-height:1.75;}
+@media(max-width:900px){.svc-grid{grid-template-columns:1fr;}}
 
 /* CTA */
 .cta-sec{text-align:center;background:linear-gradient(135deg,rgba(0,245,255,.02),rgba(123,47,255,.02));border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
@@ -233,6 +233,22 @@ footer{position:relative;z-index:1;padding:36px 60px;display:flex;justify-conten
   .chat-widget{width:calc(100vw - 28px);right:14px;}
 }
 
+/* Value-prop strip */
+.vp-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+.vp-item{padding:28px 32px;background:var(--bg);display:flex;align-items:flex-start;gap:14px;}
+.vp-icon{width:32px;height:32px;border-radius:6px;flex-shrink:0;display:flex;align-items:center;justify-content:center;}
+.vp-icon.c{background:rgba(0,245,255,.1);border:1px solid rgba(0,245,255,.2);}
+.vp-icon.p{background:rgba(123,47,255,.1);border:1px solid rgba(123,47,255,.2);}
+.vp-icon.g{background:rgba(240,192,64,.08);border:1px solid rgba(240,192,64,.18);}
+.vp-icon svg{width:15px;height:15px;}
+.vp-lbl{font-size:.82rem;font-weight:700;color:var(--text);margin-bottom:4px;}
+.vp-sub{font-size:.77rem;color:var(--muted);line-height:1.6;}
+@media(max-width:900px){.vp-strip{grid-template-columns:1fr;}}
+
+/* Service icons (CSS) */
+.svc-icon{width:40px;height:40px;border-radius:8px;margin-bottom:18px;display:flex;align-items:center;justify-content:center;}
+.svc-icon svg{width:18px;height:18px;stroke-width:1.5;}
+
 /* Fade-in animation on scroll */
 .fade-up{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease;}
 .fade-up.visible{opacity:1;transform:translateY(0);}
@@ -259,30 +275,46 @@ footer{position:relative;z-index:1;padding:36px 60px;display:flex;justify-conten
 <!-- HERO -->
 <section class="hero" id="home">
   <div>
-    <div class="hero-badge"><span class="badge-dot"></span>AI &amp; Automation Specialist — Accepting New Clients</div>
-    <h1>Your Business Should<br>Be <span class="grad">Growing — Not</span><br>Just Running</h1>
-    <p class="hero-desc">Most business owners spend 60% of their day on tasks that should never touch their hands. I build the websites, workflows, and AI systems that handle it all — so you get your time back and your revenue goes up.</p>
-    <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:38px;">
-      <div style="display:flex;align-items:flex-start;gap:12px;font-size:.88rem;color:var(--muted);line-height:1.5;">
-        <span style="color:var(--cyan);font-size:1.1rem;margin-top:1px;flex-shrink:0;">⚡</span>
-        <span><strong style="color:var(--text);">Websites &amp; Funnels</strong> — Built to convert visitors into paying clients, not just impress them</span>
-      </div>
-      <div style="display:flex;align-items:flex-start;gap:12px;font-size:.88rem;color:var(--muted);line-height:1.5;">
-        <span style="color:var(--purple);font-size:1.1rem;margin-top:1px;flex-shrink:0;">🔄</span>
-        <span><strong style="color:var(--text);">Workflow Automations</strong> — Eliminate the repetitive tasks eating hours from your day, every single day</span>
-      </div>
-      <div style="display:flex;align-items:flex-start;gap:12px;font-size:.88rem;color:var(--muted);line-height:1.5;">
-        <span style="color:var(--gold);font-size:1.1rem;margin-top:1px;flex-shrink:0;">🤖</span>
-        <span><strong style="color:var(--text);">AI Systems</strong> — Smart pipelines that follow up with leads, publish content, and run operations 24/7</span>
-      </div>
-    </div>
+    <div class="hero-badge"><span class="badge-dot"></span>AI &amp; Automation Specialist · Accepting New Clients</div>
+    <h1>Your Business Should<br>Be <span class="grad">Growing,</span><br>Not Just Running</h1>
+    <p class="hero-desc">Most business owners spend 60% of their day on tasks that should never touch their hands. I build the websites, workflows, and AI systems that handle it for you.</p>
     <div class="hero-btns">
       <a href="#portfolio" class="btn-p">See What I've Built</a>
-      <a href="#" class="btn-s" onclick="openChat();return false;">Book a Free Strategy Call</a>
+      <a href="#" class="btn-s" onclick="openChat();return false;">Book a Free Call</a>
     </div>
-    <p style="margin-top:20px;font-size:.78rem;color:var(--muted);opacity:.7;">No pressure. No pitch. Just a straight conversation about what your business actually needs.</p>
   </div>
 </section>
+
+<!-- VALUE-PROP STRIP -->
+<div class="vp-strip" style="position:relative;z-index:1;">
+  <div class="vp-item">
+    <div class="vp-icon c">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#00f5ff" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+    </div>
+    <div>
+      <div class="vp-lbl">Websites &amp; Funnels</div>
+      <div class="vp-sub">Built to convert visitors into paying clients, not just impress them.</div>
+    </div>
+  </div>
+  <div class="vp-item">
+    <div class="vp-icon p">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#7b2fff" xmlns="http://www.w3.org/2000/svg"><path d="M17 1l4 4-4 4"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><path d="M7 23l-4-4 4-4"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
+    </div>
+    <div>
+      <div class="vp-lbl">Workflow Automations</div>
+      <div class="vp-sub">Cut the repetitive tasks eating hours from your day, every day.</div>
+    </div>
+  </div>
+  <div class="vp-item">
+    <div class="vp-icon g">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#f0c040" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><circle cx="12" cy="10" r="3"/></svg>
+    </div>
+    <div>
+      <div class="vp-lbl">AI Systems</div>
+      <div class="vp-sub">Pipelines that follow up with leads and run operations 24/7.</div>
+    </div>
+  </div>
+</div>
 
 <!-- PORTFOLIO -->
 <section id="portfolio" style="border-top:1px solid var(--border);">
@@ -333,16 +365,16 @@ footer{position:relative;z-index:1;padding:36px 60px;display:flex;justify-conten
       <div class="card fade-up">
         <div class="preview">
           <div class="lm-mock">
-            <div class="lm-tag">Free Download · No Cost, No Catch</div>
-            <div class="lm-ttl">Get Your Free<br><span style="color:var(--gold);">Home Buyer's</span><br>Roadmap</div>
-            <div class="lm-sub">Discover exactly how to go from renting to owning — even if you think you're not ready.</div>
+            <div class="lm-tag">Free Checklist · No Cost, No Catch</div>
+            <div class="lm-ttl">Get Your Free<br><span style="color:var(--gold);">10K Homebuying</span><br>Checklist</div>
+            <div class="lm-sub">The exact steps to go from renting to owning, even if you think you're not ready.</div>
             <div class="lm-fields">
               <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-bottom:5px;">
                 <div class="lm-field"></div><div class="lm-field"></div>
               </div>
               <div class="lm-field"></div>
               <div class="lm-field"></div>
-              <div class="lm-btn">SEND ME THE FREE GUIDE →</div>
+              <div class="lm-btn">SEND ME THE CHECKLIST →</div>
             </div>
           </div>
           <div class="p-overlay"></div>
@@ -350,8 +382,8 @@ footer{position:relative;z-index:1;padding:36px 60px;display:flex;justify-conten
         </div>
         <div class="cbody">
           <div class="c-client">Roman Homes &amp; Loans</div>
-          <div class="c-title">Home Buyer's Roadmap — Lead Magnet Funnel</div>
-          <p class="c-desc">Full opt-in landing page that delivers a free 10-step homebuying guide while capturing warm buyer leads. Integrated with an automated email nurture sequence that builds trust and books consultations.</p>
+          <div class="c-title">The 10K Homebuying Checklist: Lead Magnet Funnel</div>
+          <p class="c-desc">Opt-in landing page delivering a free homebuying checklist while capturing warm buyer leads. Integrated with an automated email nurture sequence that builds trust and drives consultation bookings.</p>
           <div class="tools">
             <span class="tool">Lead Magnet</span><span class="tool">Email Automation</span><span class="tool">Opt-In Funnel</span><span class="tool">Real Estate</span>
           </div>
@@ -381,7 +413,7 @@ footer{position:relative;z-index:1;padding:36px 60px;display:flex;justify-conten
         </div>
         <div class="cbody">
           <div class="c-client">Roman Homes &amp; Loans</div>
-          <div class="c-title">Homeownership Journey — Post-Opt-In Experience</div>
+          <div class="c-title">Homeownership Journey: Post-Opt-In Experience</div>
           <p class="c-desc">High-converting thank-you page with a 3-step next-action path that turns brand-new subscribers into booked consultations. Drives direct calls and email contact immediately after opt-in.</p>
           <div class="tools">
             <span class="tool">Conversion Design</span><span class="tool">CTA Optimization</span><span class="tool">Call Booking</span><span class="tool">UX</span>
@@ -426,13 +458,13 @@ footer{position:relative;z-index:1;padding:36px 60px;display:flex;justify-conten
       <div class="card card-feat fade-up">
         <div class="preview">
           <div class="flow">
-            <div class="fn fn-t">☁️ Google Drive — New File</div>
+            <div class="fn fn-t">☁️ Google Drive: New File</div>
             <div class="fa">↓</div>
             <div class="fn fn-a">🔍 Filter by Zapier</div>
             <div class="fa">↓</div>
-            <div class="fn fn-ai">🤖 AI — Video Transcription</div>
+            <div class="fn fn-ai">🤖 AI: Video Transcription</div>
             <div class="fa">↓</div>
-            <div class="fn fn-ai">✨ AI — Analyze &amp; Return Data</div>
+            <div class="fn fn-ai">✨ AI: Analyze &amp; Return Data</div>
             <div class="fa">↓</div>
             <div class="fn fn-sp">⬡ Loop → Split into Paths</div>
             <div class="fa">↓</div>
@@ -458,11 +490,11 @@ footer{position:relative;z-index:1;padding:36px 60px;display:flex;justify-conten
       <div class="card fade-up">
         <div class="preview">
           <div class="flow">
-            <div class="fn fn-t">🔗 Webhook — Catch Lead</div>
+            <div class="fn fn-t">🔗 Webhook: Catch Lead</div>
             <div class="fa">↓</div>
-            <div class="fn fn-a">⚡ Formatter — Company URL</div>
+            <div class="fn fn-a">⚡ Formatter: Company URL</div>
             <div class="fa">↓</div>
-            <div class="fn fn-a">🔍 Apollo — Lead Enrichment</div>
+            <div class="fn fn-a">🔍 Apollo: Lead Enrichment</div>
             <div class="fa">↓</div>
             <div class="fn fn-sp">⬡ Split: High vs Low Priority</div>
             <div class="fa">↓</div>
@@ -487,7 +519,7 @@ footer{position:relative;z-index:1;padding:36px 60px;display:flex;justify-conten
         <div class="cbody">
           <div class="c-client">Sales Automation</div>
           <div class="c-title">Intelligent Lead Scoring &amp; Nurturing Pipeline</div>
-          <p class="c-desc">Incoming leads are enriched via Apollo, scored by priority, and routed automatically — high-priority leads go to Google Sheets, Slack alerts, and an AI-drafted personalized email; low-priority leads get a sales notification. No manual triage.</p>
+          <p class="c-desc">Incoming leads are enriched via Apollo, scored by priority, and routed automatically. High-priority leads go to Google Sheets, Slack alerts, and an AI-drafted email; low-priority leads get a sales notification. No manual triage.</p>
           <div class="tools">
             <span class="tool">Zapier</span><span class="tool">Apollo.io</span><span class="tool">Google Sheets</span><span class="tool">Slack</span><span class="tool">Gmail</span><span class="tool">AI</span>
           </div>
@@ -530,7 +562,7 @@ footer{position:relative;z-index:1;padding:36px 60px;display:flex;justify-conten
         <div class="cbody">
           <div class="c-client">Finance &amp; Project Management</div>
           <div class="c-title">Asana–Xero Financial Task Sync System</div>
-          <p class="c-desc">When Asana tasks complete, Xero is queried via API, then routed: Path 1 iterates records into Google Sheets rows; Path 2 aggregates all data and uploads it back as an Asana task attachment — fully closing the loop.</p>
+          <p class="c-desc">When Asana tasks complete, Xero is queried via API and routed: Path 1 iterates records into Google Sheets rows; Path 2 aggregates all data and uploads it back as an Asana task attachment, fully closing the loop.</p>
           <div class="tools">
             <span class="tool">Make.com</span><span class="tool">Asana</span><span class="tool">Xero</span><span class="tool">Google Sheets</span><span class="tool">API</span>
           </div>
@@ -543,16 +575,51 @@ footer{position:relative;z-index:1;padding:36px 60px;display:flex;justify-conten
 
 <!-- SERVICES -->
 <section id="services" style="background:linear-gradient(135deg,rgba(0,245,255,.02),rgba(123,47,255,.02));border-top:1px solid var(--border);">
-  <div class="sec-label">What I Do</div>
   <h2>Services <span class="grad">Offered</span></h2>
-  <p class="sec-desc">Whether you need one thing fixed or an entire system built from scratch — here's exactly how I can help your business grow.</p>
+  <p class="sec-desc">Whether you need one thing fixed or an entire system built from scratch, here's exactly how I can help your business grow.</p>
   <div class="svc-grid">
-    <div class="svc-card fade-up"><span class="svc-ico">⚡</span><div class="svc-ttl">Funnel &amp; Website Design</div><p class="svc-desc">High-converting landing pages, lead magnet funnels, opt-in sequences, and registration portals built to turn traffic into paying clients.</p></div>
-    <div class="svc-card fade-up"><span class="svc-ico">🔄</span><div class="svc-ttl">Workflow Automation</div><p class="svc-desc">Zapier, Make.com, and n8n automations that connect your apps, eliminate manual tasks, and run your business processes on autopilot 24/7.</p></div>
-    <div class="svc-card fade-up"><span class="svc-ico">🤖</span><div class="svc-ttl">AI Integration</div><p class="svc-desc">AI-powered pipelines that transcribe video content, enrich leads, write personalized emails, and publish social posts — automatically.</p></div>
-    <div class="svc-card fade-up"><span class="svc-ico">📊</span><div class="svc-ttl">Lead Management Systems</div><p class="svc-desc">CRM setups, lead scoring pipelines, and nurture sequences that ensure every lead gets the right message at the right time — guaranteed follow-up.</p></div>
-    <div class="svc-card fade-up"><span class="svc-ico">📱</span><div class="svc-ttl">Social Media Automation</div><p class="svc-desc">Multi-platform pipelines that take your raw content and auto-publish optimized posts to Facebook, Instagram, LinkedIn, and TikTok simultaneously.</p></div>
-    <div class="svc-card fade-up"><span class="svc-ico">🏠</span><div class="svc-ttl">Real Estate Tech Systems</div><p class="svc-desc">Specialized systems for realtors and mortgage professionals — model home sign-in portals, buyer nurture sequences, and loan pipeline tracking.</p></div>
+    <div class="svc-card fade-up">
+      <div class="svc-icon" style="background:rgba(0,245,255,.08);border:1px solid rgba(0,245,255,.18);">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#00f5ff" stroke-width="1.5" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+      </div>
+      <div class="svc-ttl">Funnel &amp; Website Design</div>
+      <p class="svc-desc">High-converting landing pages, lead magnet funnels, opt-in sequences, and registration portals built to turn traffic into paying clients.</p>
+    </div>
+    <div class="svc-card fade-up">
+      <div class="svc-icon" style="background:rgba(123,47,255,.08);border:1px solid rgba(123,47,255,.18);">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#7b2fff" stroke-width="1.5" xmlns="http://www.w3.org/2000/svg"><path d="M17 1l4 4-4 4"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><path d="M7 23l-4-4 4-4"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
+      </div>
+      <div class="svc-ttl">Workflow Automation</div>
+      <p class="svc-desc">Zapier, Make.com, and n8n automations that connect your apps, eliminate manual tasks, and run your business processes around the clock.</p>
+    </div>
+    <div class="svc-card fade-up">
+      <div class="svc-icon" style="background:rgba(240,192,64,.06);border:1px solid rgba(240,192,64,.16);">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#f0c040" stroke-width="1.5" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><circle cx="12" cy="10" r="3"/></svg>
+      </div>
+      <div class="svc-ttl">AI Integration</div>
+      <p class="svc-desc">AI-powered pipelines that transcribe video content, enrich leads, write personalized emails, and publish social posts automatically.</p>
+    </div>
+    <div class="svc-card fade-up">
+      <div class="svc-icon" style="background:rgba(0,245,255,.08);border:1px solid rgba(0,245,255,.18);">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#00f5ff" stroke-width="1.5" xmlns="http://www.w3.org/2000/svg"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      </div>
+      <div class="svc-ttl">Lead Management Systems</div>
+      <p class="svc-desc">CRM setups, lead scoring pipelines, and nurture sequences so every lead gets the right message at the right time, with no manual follow-up needed.</p>
+    </div>
+    <div class="svc-card fade-up">
+      <div class="svc-icon" style="background:rgba(123,47,255,.08);border:1px solid rgba(123,47,255,.18);">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#7b2fff" stroke-width="1.5" xmlns="http://www.w3.org/2000/svg"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg>
+      </div>
+      <div class="svc-ttl">Social Media Automation</div>
+      <p class="svc-desc">Multi-platform pipelines that take your raw content and auto-publish optimized posts to Facebook, Instagram, LinkedIn, and TikTok.</p>
+    </div>
+    <div class="svc-card fade-up">
+      <div class="svc-icon" style="background:rgba(240,192,64,.06);border:1px solid rgba(240,192,64,.16);">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#f0c040" stroke-width="1.5" xmlns="http://www.w3.org/2000/svg"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      </div>
+      <div class="svc-ttl">Real Estate Tech Systems</div>
+      <p class="svc-desc">Specialized systems for realtors and mortgage professionals: model home portals, buyer nurture sequences, and loan pipeline tracking.</p>
+    </div>
   </div>
 </section>
 
@@ -561,8 +628,8 @@ footer{position:relative;z-index:1;padding:36px 60px;display:flex;justify-conten
   <div style="max-width:780px;margin:0 auto;text-align:center;">
     <div class="sec-label" style="justify-content:center;">About</div>
     <h2>Clod <span class="grad">Salvador</span></h2>
-    <p style="color:var(--muted);font-size:1rem;line-height:1.9;margin-bottom:26px;">I'm Clod Salvador — the founder of CS Digital. I specialize in building AI-powered automation systems, high-converting funnels, and multi-platform workflow pipelines that help businesses run smarter and scale faster.</p>
-    <p style="color:var(--muted);font-size:1rem;line-height:1.9;margin-bottom:44px;">Whether you need a lead magnet funnel, a complex multi-app automation, or an AI-powered content pipeline — I build it end-to-end, so you never have to stitch it together yourself.</p>
+    <p style="color:var(--muted);font-size:1rem;line-height:1.9;margin-bottom:26px;">I'm Clod Salvador, the founder of CS Digital. I specialize in building AI-powered automation systems, high-converting funnels, and multi-platform workflow pipelines that help businesses run smarter and scale faster.</p>
+    <p style="color:var(--muted);font-size:1rem;line-height:1.9;margin-bottom:44px;">Whether you need a lead magnet funnel, a complex multi-app automation, or an AI-powered content pipeline, I build it end-to-end so you never have to stitch it together yourself.</p>
     <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
       <span class="tool" style="padding:7px 15px;font-size:.78rem;">AI &amp; Automation</span>
       <span class="tool" style="padding:7px 15px;font-size:.78rem;">Funnel Design</span>
@@ -577,12 +644,11 @@ footer{position:relative;z-index:1;padding:36px 60px;display:flex;justify-conten
 
 <!-- CTA -->
 <section class="cta-sec" id="contact">
-  <div class="sec-label" style="justify-content:center;">Let's Work Together</div>
   <h2>Let's Build Something <span class="grad">That Works For You</span></h2>
-  <p class="sec-desc" style="margin:0 auto 16px;text-align:center;">You didn't start your business to spend all day on tasks a system could handle. Book a free 30-minute call — I'll show you exactly what can be automated, what should be built, and what it would cost.</p>
-  <p style="text-align:center;color:var(--muted);font-size:.85rem;margin-bottom:40px;">No obligation. No fluff. Just a clear plan you can act on — whether you hire me or not.</p>
+  <p class="sec-desc" style="margin:0 auto 16px;text-align:center;">You didn't start your business to spend all day on tasks a system could handle. Book a free 30-minute call and I'll show you exactly what can be automated, what should be built, and what it would cost.</p>
+  <p style="text-align:center;color:var(--muted);font-size:.85rem;margin-bottom:40px;">No obligation. No pitch. Just a clear plan you can act on, whether you hire me or not.</p>
   <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
-    <a href="#" class="btn-p" onclick="openChat();return false;">Book My Free Call</a>
+    <a href="#" class="btn-p" onclick="openChat();return false;">Book a Free Call</a>
     <a href="mailto:clodsalvador.automations@gmail.com" class="btn-s">Send an Email</a>
   </div>
 </section>
@@ -786,7 +852,7 @@ function handle(v) {
 }
 
 function confirmBooking() {
-  var title = encodeURIComponent('Strategy Call — ' + data.name);
+  var title = encodeURIComponent('Strategy Call: ' + data.name);
   var details = encodeURIComponent(
     'Name: ' + data.name + '\n' +
     'Email: ' + data.email + '\n' +
@@ -796,7 +862,7 @@ function confirmBooking() {
   );
   var calLink = 'https://calendar.google.com/calendar/render?action=TEMPLATE&text=' + title + '&details=' + details + '&sf=true&output=xml';
 
-  var subj = encodeURIComponent('📅 New Strategy Call Request — ' + data.name);
+  var subj = encodeURIComponent('New Strategy Call Request: ' + data.name);
   var body = encodeURIComponent(
     'Hello Clod,\n\n' +
     'You have a new strategy call request via CS Digital:\n\n' +
@@ -806,7 +872,7 @@ function confirmBooking() {
     'Service Interest: ' + data.service + '\n' +
     'Preferred Day: ' + data.day + '\n' +
     'Preferred Time: ' + data.time + ' ET\n\n' +
-    'Please reach out to confirm the appointment.\n\n— CS Digital Booking System'
+    'Please reach out to confirm the appointment.\n\n- CS Digital Booking System'
   );
   var gmailLink = 'https://mail.google.com/mail/?view=cm&to=clodsalvador.automations%40gmail.com&su=' + subj + '&body=' + body;
 
