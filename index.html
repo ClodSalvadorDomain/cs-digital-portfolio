@@ -181,6 +181,17 @@ h2{font-family:'Barlow Condensed',sans-serif;font-size:clamp(1.8rem,3vw,2.8rem);
 .svc-desc{font-size:.8rem;color:var(--muted);line-height:1.75;}
 @media(max-width:900px){.svc-grid{grid-template-columns:1fr;}}
 
+/* Tools */
+.tools-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;}
+.tool-card{display:flex;flex-direction:column;align-items:center;text-align:center;padding:28px 16px 24px;background:var(--card);border:1px solid var(--border);border-radius:12px;transition:transform .25s,background .25s,border-color .25s;}
+.tool-card:hover{transform:translateY(-4px);background:var(--card-hover);border-color:rgba(0,245,255,.28);}
+.tool-logo{width:60px;height:60px;border-radius:14px;background:#fff;display:flex;align-items:center;justify-content:center;margin-bottom:16px;box-shadow:0 6px 20px var(--shadow);overflow:hidden;}
+.tool-logo img{width:34px;height:34px;object-fit:contain;}
+.tool-logo.full img{width:100%;height:100%;}
+.tool-name{font-size:.92rem;font-weight:700;margin-bottom:6px;}
+.tool-use{font-size:.74rem;color:var(--muted);line-height:1.6;}
+@media(max-width:600px){.tools-grid{grid-template-columns:repeat(2,1fr);}}
+
 /* CTA */
 .cta-sec{text-align:center;background:linear-gradient(135deg,rgba(0,245,255,.02),rgba(123,47,255,.02));border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
 
@@ -361,6 +372,7 @@ body.light .p-expand{background:rgba(255,255,255,.8);}
   <ul class="nav-links">
     <li><a href="#portfolio">Portfolio</a></li>
     <li><a href="#services">Services</a></li>
+    <li><a href="#tools">Tools</a></li>
     <li><a href="#about">About</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
@@ -697,6 +709,49 @@ body.light .p-expand{background:rgba(255,255,255,.8);}
       </div>
       <div class="svc-ttl">Email &amp; CRM Automation</div>
       <p class="svc-desc">Drip email sequences, inbox automation, and CRM syncs that keep every lead warm and every task tracked without you lifting a finger.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TOOLS -->
+<section id="tools" style="border-top:1px solid var(--border);">
+  <h2>Tools <span class="grad">I Use</span></h2>
+  <p class="sec-desc">The platforms behind every build. I choose the right tool for each job, so your systems stay reliable, affordable, and easy to grow.</p>
+  <div class="tools-grid">
+    <div class="tool-card fade-up">
+      <div class="tool-logo"><img src="assets/tools/openai.svg" alt="ChatGPT logo" loading="lazy"></div>
+      <div class="tool-name">ChatGPT</div>
+      <p class="tool-use">AI writing, research &amp; reasoning</p>
+    </div>
+    <div class="tool-card fade-up">
+      <div class="tool-logo"><img src="assets/tools/claude.svg" alt="Claude logo" loading="lazy"></div>
+      <div class="tool-name">Claude</div>
+      <p class="tool-use">AI agents, copy &amp; code</p>
+    </div>
+    <div class="tool-card fade-up">
+      <div class="tool-logo"><img src="assets/tools/n8n.svg" alt="n8n logo" loading="lazy"></div>
+      <div class="tool-name">n8n</div>
+      <p class="tool-use">Advanced AI workflow automation</p>
+    </div>
+    <div class="tool-card fade-up">
+      <div class="tool-logo"><img src="assets/tools/make.svg" alt="Make logo" loading="lazy"></div>
+      <div class="tool-name">Make</div>
+      <p class="tool-use">Visual multi-step automations</p>
+    </div>
+    <div class="tool-card fade-up">
+      <div class="tool-logo"><img src="assets/tools/zapier.svg" alt="Zapier logo" loading="lazy"></div>
+      <div class="tool-name">Zapier</div>
+      <p class="tool-use">Fast app-to-app integrations</p>
+    </div>
+    <div class="tool-card fade-up">
+      <div class="tool-logo"><img src="assets/tools/gohighlevel.svg" alt="GoHighLevel logo" loading="lazy"></div>
+      <div class="tool-name">GoHighLevel</div>
+      <p class="tool-use">CRM, funnels &amp; lead follow-up</p>
+    </div>
+    <div class="tool-card fade-up">
+      <div class="tool-logo full"><img src="assets/tools/higgsfield.png" alt="Higgsfield logo" loading="lazy"></div>
+      <div class="tool-name">Higgsfield</div>
+      <p class="tool-use">AI image &amp; video creation</p>
     </div>
   </div>
 </section>
