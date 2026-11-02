@@ -1,0 +1,43 @@
+# Netlify build config. Mirrors vercel.json so the same commit deploys
+# identically on either host — neither one is the odd build out.
+
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  # Netlify's default Node is older than what Vite 6 and React 19 are
+  # tested against here. Pinning avoids a build that only fails on Netlify.
+  NODE_VERSION = "22"
+  NPM_FLAGS = "--include=dev"
+
+# Vite emits content-hashed filenames, so anything under /assets/ is safe
+# to cache forever: a changed file gets a new name, not a new version.
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# The HTML entry must never be cached, or a visitor keeps loading an old
+# bundle after a deploy.
+[[headers]]
+  for = "/index.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    X-Frame-Options = "SAMEORIGIN"
+
+# Single page, so any other path resolves to it rather than a 404 page.
+# Netlify only applies this when no real file matches. The usual hazard —
+# a missing asset returning HTML with a 200 and a confusing MIME error —
+# is closed by the must-revalidate header above: the HTML is never cached,
+# so a client always gets markup pointing at assets from the live deploy.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

@@ -12,6 +12,39 @@ npm run build      # -> dist/
 npm run preview    # serve the build on :4173
 ```
 
+## Deploying
+
+The repo is configured for **both Vercel and Netlify** from the same commit.
+`vercel.json` and `netlify.toml` are kept in parity: same build command, same
+`dist` output, same cache headers (assets immutable, HTML must-revalidate),
+same security headers.
+
+| | Vercel | Netlify |
+|---|---|---|
+| Config | `vercel.json` | `netlify.toml` |
+| Build | `npm run build` | `npm run build` |
+| Publish | `dist` | `dist` |
+| Node | Vercel default | pinned to 22 |
+
+**Connecting Netlify** (first time only) — either:
+
+- *Netlify UI:* Add new site → Import an existing project → GitHub →
+  `ClodSalvadorDomain/cs-digital-portfolio`. Leave the build settings alone;
+  `netlify.toml` already supplies them.
+- *CLI:* `npm i -g netlify-cli && netlify login && netlify init`, then
+  `netlify deploy --build --prod`.
+
+Netlify pins `NODE_VERSION = "22"` because its default Node is older than what
+Vite 6 and React 19 are exercised against here — without it you get a build
+that fails only on Netlify.
+
+**Set the webhook env var on whichever host you use.** It is read at build
+time, not runtime, so a host that does not have it will ship the mailto
+fallback no matter what the other host is set to:
+
+- Vercel: Project → Settings → Environment Variables
+- Netlify: Site configuration → Environment variables
+
 ## Wiring up the audit form
 
 The form at the bottom of the page is the only thing that needs
