@@ -1,0 +1,25 @@
+{
+  "name": "cs-digital-portfolio",
+  "private": true,
+  "version": "2.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview --port 4173"
+  },
+  "dependencies": {
+    "@react-three/fiber": "^9.0.0",
+    "@shadergradient/react": "^2.0.13",
+    "camera-controls": "^2.10.1",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "three": "^0.170.0",
+    "three-stdlib": "^2.35.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.4",
+    "playwright-core": "^1.64.1",
+    "vite": "^6.0.7"
+  }
+}
